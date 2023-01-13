@@ -1,0 +1,312 @@
+.header {
+  position: fixed;
+  z-index: 13;
+  display: flex;
+  width: 100%;
+  height: 82px;
+}
+
+.calendar-logo-wrapper {
+  display: flex;
+  padding-right: 10px;
+  padding-left: 12px;
+  align-items: center;
+  background-color: #5e656a;
+}
+
+.calendar-logo {
+  width: 110px;
+}
+
+.calendar-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  padding-left: 0px;
+  padding-right: 41.5px;
+}
+
+.navbar-flex-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f6f6ea;
+}
+
+.hamburger-icon {
+  display: none;
+}
+
+.calendar-view-change-wrapper {
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+
+.month-details {
+  width: 225px;
+  color: #323230;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.calendar-view-change-button {
+  margin-left: 5px;
+  border: 1px solid #e0dbdb;
+  padding: 0px 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  height: 32px;
+}
+
+.calendar-view-change-button:hover {
+  border-color: #e94f37;
+  cursor: pointer;
+}
+
+.chevron-left {
+  color: #111111;
+  font-size: 12px;
+  padding: 3px;
+}
+
+.chevron-left:hover {
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 50%;
+  background-color: #e94f37;
+}
+
+.today {
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.today:hover {
+  color: #e94f37;
+  font-weight: bold;
+}
+
+.chevron-right {
+  padding: 3px;
+  color: #111111;
+  font-size: 12px;
+}
+
+.chevron-right:hover {
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 50%;
+  background-color: #e94f37;
+}
+
+.nav-bar-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  padding-left: 10px;
+  background-color: #eceee3;
+  border-radius: 4px;
+}
+
+.input-box:hover {
+  cursor: pointer;
+}
+
+.input-field {
+  padding: 5px;
+  background-color: #eceee3;
+  border: none;
+  color: #696a65;
+  font-size: 12px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.magnifying-glass {
+  color: #696a65;
+}
+
+.dropdown-container {
+  height: 34px;
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+  border: 1px solid #e0dbdb;
+  background-color: #f6f6ea;
+}
+
+.dropdown-container:hover {
+  border-color: #e94f37;
+  cursor: pointer;
+}
+
+.dropdown-default-month {
+  color: black;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.caret-down {
+  color: rgb(97, 96, 96);
+  width: 14px;
+  height: 14px;
+}
+
+.caret-down:hover {
+  color: #e94f37;
+}
+
+.current-dropdown-name {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.current-dropdown-name:hover {
+  color: #e94f37;
+}
+
+.icon-button {
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: #f6f6ea;
+  border: none;
+  outline: none;
+  border: 1px solid #e0dbdb;
+  border-radius: 4px;
+}
+
+.icon-button:hover {
+  cursor: pointer;
+  border-color: #e94f37;
+}
+
+.icon-button:active {
+  background: #cccccc;
+}
+
+.icon-button__badge {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 1px;
+  font-size: 8px;
+  height: 1px;
+  padding: 5px;
+  background: red;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fefef4;
+  width: 60px;
+  height: 40px;
+  border-radius: 9999px;
+}
+
+.profile:hover {
+  background-color: #e94f37;
+  cursor: pointer;
+}
+
+.chevron-down {
+  width: 12px;
+  height: 12px;
+  color: rgb(97, 96, 96);
+}
+
+.chevron-down:hover {
+  color: white;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+@media only screen and (max-width: 1240px) {
+  .input-box {
+    display: none;
+  }
+  .nav-bar-flex {
+    justify-content: flex-end;
+  }
+  .dropdown-container {
+    margin-right: 30px;
+  }
+  .icon-button {
+    margin-right: 30px;
+  }
+  .calendar-view-change-wrapper {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 990px) {
+  .calendar-logo-wrapper {
+    display: none;
+  }
+  .hamburger-icon {
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+  .hamburger-icon:hover {
+    background-color: #e94f37;
+    color: white;
+  }
+}
+@media only screen and (max-width: 690px) {
+  .month-details {
+    font-size: 18px;
+    width: 175px;
+  }
+  .hamburger-icon {
+    font-size: 18px;
+  }
+  .icon-button {
+    display: none;
+  }
+}
+@media only screen and (max-width: 621px) {
+  .profile {
+    display: none;
+  }
+}/*# sourceMappingURL=NavBar.css.map */
