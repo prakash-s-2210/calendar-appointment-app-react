@@ -6,11 +6,19 @@
     // width: 100%;
     padding: 20px;
     padding-bottom: 0px;
+     background-color: #f6f6ea;
 }
 .day-view-calendar-date {
+    // display: flex;
+    // align-items: flex-end;
+    // width: 100%;
+
     display: flex;
     align-items: flex-end;
     width: 100%;
+    position: relative;
+    top: 48px;
+
 }
 .gmt {
     min-width: 53px;
@@ -37,10 +45,20 @@
     border-bottom: 1px dashed #8a8888;
 }
 .date{
+    // background-color: #393e41;
+    // padding: 10px;
+    // padding-right: 0px;
+    // border-radius: 8px;
+
     background-color: #393e41;
     padding: 10px;
     padding-right: 0px;
     border-radius: 8px;
+    position: fixed;
+    top: 82px;
+    width: 100%;
+    z-index: 8;
+
 }
 .day-view-day {
     width: 46px;
@@ -130,6 +148,8 @@
 }
 // printed events
 .event-container {
+    cursor: pointer;
+    min-height: 20px;
     background-color: indigo;
     width: 95%;
     position: absolute;
@@ -138,7 +158,6 @@
     color: white;
     left: 0px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 .event-title{
@@ -147,9 +166,8 @@
     font-weight: bold;
 }
 .day-view-event-time{
-    font-size: 11px;
+    font-size: 12px;
     padding-left: 10px;
-    font-weight: bold;
 }
 .ellipsis{
     margin-right: 20px;
@@ -162,7 +180,5 @@
         position: absolute;
         left: 0px;
     }
-    .day-header{
-        font-size: 18px;
-    }
+   
   }

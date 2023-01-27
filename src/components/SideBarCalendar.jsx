@@ -36,10 +36,15 @@ export default function SideBarCalendar(props) {
         const today = dayjs().format(format);
         const currentDay = day.format(format);
         const selectedDay = daySelected  &&  daySelected.format(format)
-        const TrackDate = showDayViewCalendar && dayViewCalendarDate.format(format)
+        const TrackDate = showDayViewCalendar && dayViewCalendarDate.format(format);
+        const currentMonth = dayjs(new Date(dayjs().year(), currentMonthIndex, 1)).format("MM")
+    
         if(today === currentDay){
             return "current-day";
         }
+        else if(currentMonth !== day.format("MM")){
+            return "prev-month";
+          }
         else if(currentDay === selectedDay){
             return "selected-day";
         }

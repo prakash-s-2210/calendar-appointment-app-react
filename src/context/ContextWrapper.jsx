@@ -9,33 +9,13 @@ function savedEventsReducer(state, {type, payload}){
     case 'get':
       return [...state,payload];
     case 'push':
-      axios.post("http://localhost:5108/api/CalendarEvents/AddCalendarEvent",payload)
-      .then(function(response){
-        return [...state, response.data];
-      })
-      .catch(function (error) {
-      })
+      return [...state, payload];
     case 'update':
-      axios.put("http://localhost:5108/api/CalendarEvents/UpdateCalendarEvent", payload)
-      .then(function(response) {
-        return state.map((evt) =>
-        evt.id === response.data.id ? response.data : evt
-      );
-        // return response.data.map(evt => evt.id === payload.id ? payload : evt)
-      })
+      return [...payload]
     case 'delete':
-      console.log(payload)
-      axios.post("http://localhost:5108/api/CalendarEvents/DeleteCalendarEvent", payload)
-      .then(function(response){
-        console.log(response.data)
-        return state.filter(evt => evt.id !== response.data.id)
-      })
-      .catch(err => {
-        // Handle error
-        console.log(err);
-    });
+      return [...payload]
     default:
-      return [];
+      return state;
   }
 }
 function initEvents() {
@@ -50,9 +30,9 @@ function currentEndTime(selectedEvent) {
   const currentTimePlusOneHour = moment(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0)).add(1, 'hours').format("h:mma");
   return selectedEvent ? selectedEvent.endTime : currentTimePlusOneHour;
 }
-function formatStartTime(selectedEvent) { 
+function formatStartTime(selectedEvent, showMonthViewCalendar) { 
   const currentTime = moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0).format("HH:mm");
-  return selectedEvent ? selectedEvent.startTime : currentTime
+  return selectedEvent ? selectedEvent.startTime : showMonthViewCalendar && "currentTime"
 }
 function formatEndTime(selectedEvent) {
   const currentTimePlusOneHour = moment(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0)).add(1, 'hours').format("HH:mm");
@@ -61,45 +41,45 @@ function formatEndTime(selectedEvent) {
 export default function ContextWrapper(props) {
   //dayView event modal
   //event modal
-    const [ currentTime, setCurrentTime ] = useState(null);
+    const [ viewEvents, setViewEvents ] = useState(false);
+    const [ currentTime, setCurrentTime ] = useState(null); // setting a day view current time
     const [ dayViewLabel, setDayViewLabel ] = useState("blue"); // for day view label change
     const [ timeSlots, setTimeSlots ] = useState([]); // get the time slots from 12am to 11:45am
     const [ trackPosition, setTrackPosition ] = useState(null)
     const [ height, setHeight ] = useState(null);
     const [ trackTitle, setTrackTitle ] = useState("(Add title)")
-    const [ dayViewEventStartTime, setDayViewEventStartTime ] = useState(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0).format("h:mma"));
-    const [ dayViewEventEndTime, setDayViewEventEndTime ] = useState(moment(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0)).add(1, 'hours').format("h:mma"))
-    const [ addTime, setAddTime ] = useState(true);
-    const [ startTimeComponent, setStartTimeComponent] = useState(false);
-    const [ endTimeComponent, setEndTimeComponent] = useState(false);
-    const [ date, setDate ] = useState(true);
-    const [ trackLabel, setTrackLabel ] = useState(null);
+    const [ dayViewEventStartTime, setDayViewEventStartTime ] = useState(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0).format("h:mma")); // dayview event start time
+    const [ dayViewEventEndTime, setDayViewEventEndTime ] = useState(moment(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0)).add(1, 'hours').format("h:mma")) // day view event end time
+    const [ addTime, setAddTime ] = useState(true); // add time div hide
+    const [ startTimeComponent, setStartTimeComponent] = useState(false); // start time drop down
+    const [ endTimeComponent, setEndTimeComponent] = useState(false); // end time dropdown
+    const [ date, setDate ] = useState(true); // change calendar and time component
+    const [ trackLabel, setTrackLabel ] = useState(null); 
     const [ defaultTitle, setDefaultTitle ] = useState(false);
     const [ defaultTimeWithTitle, setDefaultTimeWithTitle ] = useState(false);
-    const [ showDropdownModal, setShowDropdownModal] = useState(false)
-    const [ showMonthViewCalendar, setShowMonthViewCalendar] = useState(true)
-    const [ showDayViewCalendar, setShowDayViewCalendar] = useState(false)
-    const [ monthIndex, setMonthIndex] = useState(dayjs().month())
-    const [ dateIndex, setDateIndex] = useState(dayjs().date())
-    const [ sideBarCalendarMonth, setSideBarCalendarMonth] = useState(null)
-    const [ daySelected, setDaySelected] = useState(dayjs())
-    const [ showEventModal, setShowEventModal] = useState(false)
-    const [ selectedEvent, setSelectedEvent] = useState(null)
-    const [ eventStartTime, setEventStartTime ] = useState(currentStartTime(selectedEvent));
-    const [ eventEndTime, setEventEndTime ] = useState(currentEndTime(selectedEvent));
-    const [ title, setTitle ] = useState(selectedEvent ? selectedEvent.title : "")
-    const [ labels, setLabels] = useState([])
-    const [ isToggle, setIsToggle ] = useState(false)
-    const [ startDateTime, setStartDateTime ] = useState(formatStartTime(selectedEvent))
-    const [ endDateTime, setEndDateTime ] = useState(formatEndTime(selectedEvent))
-    const [ startTime, setStartTime ] = useState(selectedEvent ? selectedEvent.startTime:"")
-    const [ endTime, setEndTime ] = useState(selectedEvent ? selectedEvent.endTime:"")
+    const [ showDropdownModal, setShowDropdownModal] = useState(false); // show dropdown modal
+    const [ showMonthViewCalendar, setShowMonthViewCalendar] = useState(true) // show month view calendar component
+    const [ showDayViewCalendar, setShowDayViewCalendar] = useState(false)  // show day view calendar
+    const [ monthIndex, setMonthIndex] = useState(dayjs().month()) // month index control the monthly calendar  change
+    const [ dateIndex, setDateIndex] = useState(dayjs().date()) // date index control the day view calendar change
+    const [ sideBarCalendarMonth, setSideBarCalendarMonth] = useState(null) // side bar calendar month 
+    const [ daySelected, setDaySelected] = useState(dayjs()) // select the day for event
+    const [ showEventModal, setShowEventModal] = useState(false) // showing event modal
+    const [ selectedEvent, setSelectedEvent] = useState(null) //selected event for updating
+    const [ eventStartTime, setEventStartTime ] = useState(currentStartTime(selectedEvent)); //month view start time
+    const [ eventEndTime, setEventEndTime ] = useState(currentEndTime(selectedEvent)); // month view end time
+    const [ title, setTitle ] = useState(selectedEvent ? selectedEvent.title : "") // title for event
+    const [ labels, setLabels] = useState([]) //labels for event
+    const [ isToggle, setIsToggle ] = useState(false) // side bar toggle 
+    const [ startDateTime, setStartDateTime ] = useState(formatStartTime(selectedEvent, showMonthViewCalendar)) // for setting the event start time in HH:MM format
+    const [ endDateTime, setEndDateTime ] = useState(formatEndTime(selectedEvent)) // for setting the event end time in HH:MM format
+    const [ startTime, setStartTime ] = useState(selectedEvent ? selectedEvent.startTime:"") // for setting the start time
+    const [ endTime, setEndTime ] = useState(selectedEvent ? selectedEvent.endTime:"") // for setting the end time
     const [ savedEvents, dispatchCallEvent] = useReducer(
       savedEventsReducer, 
       [], 
       initEvents
       );
-      
 // get request
 const filteredEvents = useMemo(() => {
   return savedEvents.filter((evt)=>
@@ -108,17 +88,14 @@ const filteredEvents = useMemo(() => {
      .includes(evt.label)    
   );
 }, [savedEvents, labels]);
-useEffect(()=>{
-  axios.get("http://localhost:5108/api/CalendarEvents/GetCalendarEvents").then((data) => {
-    data.data.map((event)=>{
-      dispatchCallEvent({type:"get", payload: event});
-  })
-    });
-},[])
-
-//     useEffect(() => {
-//       localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
-// },[savedEvents]);
+// useEffect(()=>{
+//   axios.get("http://localhost:5108/api/CalendarEvents/GetCalendarEvents", { withCredentials: true }).then((data) => {
+//     data.data.map((event)=>{
+//       dispatchCallEvent({type:"get", payload: event});
+//   })
+//     });
+// },[])
+;
     useEffect(() => {
       setLabels((prevLabels)=>{
         return[ ...new Set(savedEvents.map((evt) => evt.label))].map(
@@ -140,11 +117,15 @@ useEffect(()=>{
       let updateEndTime = selectedEvent && moment(selectedEvent.endTime).format("h:mma")
       let updateStartDateTime = selectedEvent && moment(selectedEvent.startTime).format("HH:mm")
       let updateEndDateTime = selectedEvent && moment(selectedEvent.endTime).format("HH:mm")
-      selectedEvent && setEventStartTime(updateStartTime);
-      selectedEvent && setEventEndTime(updateEndTime);
-      selectedEvent && setStartDateTime(updateStartDateTime)
-      selectedEvent && setEndDateTime(updateEndDateTime)
-      setTitle(selectedEvent?selectedEvent.title:"")
+      showMonthViewCalendar && selectedEvent ? setEventStartTime(updateStartTime):setEventStartTime(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0).format("h:mma"));
+      showMonthViewCalendar && selectedEvent ?setEventEndTime(updateEndTime):setEventEndTime(moment(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0)).add(1, 'hours').format("h:mma"));
+      showMonthViewCalendar && selectedEvent ? setStartDateTime(updateStartDateTime):setStartDateTime(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0).format("h:mma"));
+      showMonthViewCalendar && selectedEvent ? setEndDateTime(updateEndDateTime): setEndDateTime(moment(moment().add( moment().minute() > 30 && 1 , 'hours').minutes( moment().minute() <= 30 ? 30 : 0)).add(1, 'hours').format("h:mma"));
+      showDayViewCalendar && selectedEvent ? setDayViewEventStartTime(updateStartTime):setDayViewEventStartTime(dayViewEventStartTime);
+      showDayViewCalendar && selectedEvent ? setDayViewEventEndTime(updateEndTime):setDayViewEventEndTime(dayViewEventEndTime);
+      showDayViewCalendar && selectedEvent ? setStartDateTime(updateStartDateTime):setDayViewEventStartTime(dayViewEventStartTime);
+      showDayViewCalendar && selectedEvent ? setEndDateTime(updateEndDateTime):setDayViewEventEndTime(dayViewEventEndTime);
+      setTitle(selectedEvent?selectedEvent.title:"");
     }, [showEventModal])
     useEffect(()=>{
       if(sideBarCalendarMonth !== null){
@@ -238,7 +219,9 @@ useEffect(()=>{
       startTime,
       setStartTime,
       endTime,
-      setEndTime
+      setEndTime,
+      viewEvents,
+      setViewEvents
       }}>
         {props.children}
     </GlobalContext.Provider>

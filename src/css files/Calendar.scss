@@ -24,6 +24,8 @@
     border-radius: 10px;
 }
 .column {
+    position: relative;
+    cursor: pointer;
     border-right: 1px solid #c4c6bb;
     border-top: 1px solid #c4c6bb;
     text-align: center;
@@ -34,7 +36,7 @@
     background-color: #393e41;
     font-weight: bold;
     padding: 20px 0px;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     font-weight: bold;
 }
@@ -45,17 +47,57 @@
     text-align: center;
     margin: auto;
     margin-top: 2px;
+    color: black;
+    font-weight: bold;
 }
 .date-calendar:hover{ 
+    width: fit-content;
+    white-space: nowrap;
     cursor: pointer;
     background-color: #fe2807;
     color: white;
     border-radius: 50%;
-    width: 25px;
+    max-width: 35px;
     box-sizing: border-box;
     padding: 5px 5px;
     font-weight: bold;
     font-size: 12px;
+}
+.prev-month{
+    font-size: 12px;
+    padding: 5px 8px;
+    max-width: fit-content;
+    text-align: center;
+    margin: auto;
+    margin-top: 2px;
+    color: #70757a;;
+    font-weight: bold;
+
+}
+.prev-month:hover{ 
+    width: fit-content;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #fe2807;
+    color: white;
+    border-radius: 50%;
+    max-width: 35px;
+    box-sizing: border-box;
+    padding: 5px 5px;
+    font-weight: bold;
+    font-size: 12px;
+
+
+
+    // cursor: pointer;
+    // background-color: #fe2807;
+    // color: white;
+    // border-radius: 50%;
+    // max-width: 35px;
+    // box-sizing: border-box;
+    // padding: 5px 5px;
+    // font-weight: bold;
+    // font-size: 12px;
 }
 p.day-class {
     cursor: pointer;
@@ -78,58 +120,93 @@ p.day-class {
     background-color: #1a73e8;
 }
 .month-event-title {
-    padding: 4px;
+    display: flex;
+    align-items: center;
     margin-right: 12px;
     color: white;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 12px;
     border-radius: 4px;
     margin-bottom: 4px;
     text-align: left;
+    height: 18px;
+    overflow: hidden;
 }
-.drop-down-container {
-    position: absolute;
-    top: 75px;
-    z-index: 3;
-    right: 230px;
+.radio-button{
+    margin: 0px;
+    width:13px;
+    margin: 8px;
+}
+.event-month-time{
+    margin-right: 5px;
+}
+.count-events{
+    white-space: nowrap;
+    color: black;
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 12px;
+    font-size: 14px;
+    margin-right: 12px;
+}
+.count-events:hover{
+    background-color: #e94f37;
+    color: white;
+    border-radius: 4px;
+}
+.day-view-events-title{
+    font-size: 14px;
+    height: 18px;
+    margin-bottom: 2px;
+}
+.month-calendar-event-modal {
+    box-sizing: border-box;
+    width: 208px;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    border: 1px solid white;
-    height: auto;
-    background-color: #ffffff;
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    width: 200px;
-    cursor: pointer;
+    position: absolute;
+    bottom: 0px;
+    left: -20px;
+    z-index: 15;
     border-radius: 8px;
+    padding: 0px 10px;
+    padding-bottom: 15px;
 }
-.dropdown-flex {
+.calendar-event-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 40px;
-    margin: 0px 10px;
+    padding: 12px 0px;
+    border-radius: 8px;
 }
-.calendar-type-name {
-    color: #464646;
-    font-size: 14px;
+.close-event{
+    width: 18px;
+    height: 18px;
+    padding: 5px;
+}
+.show-event-date{
+    width: 20px;
+    height: 20px;
+    padding: 3px 8px;
+    margin-right: 5px;
+    border-radius: 50%;
+    color: #fff;
     font-weight: bold;
-    color: black;
-    width: 100px;
+    background-color: #fe2807;
 }
-.calendar-type-name:hover{
-    color:#e94f37;
+.close-event:hover{
+    color: red;
+    border-radius: 50%;
+    background-color: rgb(212, 210, 210);
 }
-.calendar-type-symbol {
-    text-align: right;
-    width: 100px;
-    color: #7c7f83;
+.show-event-flex{
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0px 10px;
     font-size: 14px;
-    color: black;
-    font-weight: bold;
-    
-}
-.calendar-type-symbol:hover{
-    color: #e94f37;
+    color: #fff;
     font-weight: bold;
 }
 @media only screen and (max-width: 990px) {
@@ -141,4 +218,21 @@ p.day-class {
         font-size: 18px;
     }
   }
-
+  @media only screen and (max-width: 600px) {
+    .row{
+        position: absolute;
+        left: 0px;
+    }
+    .day-header{
+        font-size: 16px;
+    }
+    .date-calendar{
+        font-size: 10px;
+    }
+    p.day-class{
+        font-size: 10px;
+    }
+    p.prev-month{
+        font-size: 10px;
+    }
+  }

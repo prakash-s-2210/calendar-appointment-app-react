@@ -24,9 +24,13 @@ export default function EventCalendar(props) {
         const today = dayjs().format(format)
         const currentDay = day.format(format)
         const selectedDay = daySelected  &&  daySelected.format(format)
+        const currentMonth = dayjs(new Date(dayjs().year(), currentMonthIndex, 1)).format("MM")
         if(today === currentDay){
             return "current-day";
         }
+        else if(currentMonth !== day.format("MM")){
+            return "prev-month";
+          }
         else if(currentDay === selectedDay){
             return "selected-day";
         }
@@ -76,7 +80,7 @@ export default function EventCalendar(props) {
                                 // setCurrentMonthIndex(currentMonthIndex);   
                             }
                         }>
-                            <span className={`${currentDayStyle(day)}`}>{day.format("D")}</span>
+                            <span className={`${currentDayStyle(day)}`}>{day.format("DD")}</span>
                         </button>
                     ))}
                 </React.Fragment>

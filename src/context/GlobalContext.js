@@ -68,6 +68,8 @@ const GlobalContext = React.createContext({
     endTime: null,
     setEndTime: ()=>{},
     currentTime: null,
-    setCurrentTime: ()=>{}
+    setCurrentTime: ()=>{},
+    viewEvents: false,
+    setViewEvents: ()=>{}
 });
 export default GlobalContext;

@@ -13,7 +13,7 @@ const Modal = forwardRef((props, ref) => {
   return (
     <AnimatePresence>
         {open && (
-            <>{console.log(open)}
+            <>
             <motion.div 
             initial={{
                 opacity: 0

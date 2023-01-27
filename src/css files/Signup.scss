@@ -1,0 +1,224 @@
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css') ;
+
+.container{
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f6f6ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-container{
+    // min-height: 100vh;
+    background-color:#393e41;
+    border-radius: 8px;
+    padding: 25px;
+    max-width: 370px;
+    width: 100%;
+  }
+.signup-header{
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+}
+ .form {
+    margin-top: 30px;
+}
+.field{
+    margin-bottom: 20px;
+}
+.name-input-field{
+    position: relative;
+    height: 55px;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+}
+.input-field-name{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    border: 1px solid #d1d1d1;
+}
+.hide-first-name-error{
+    display: none;
+}
+.first-name-error{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 6px;
+    color: #d93025;
+    font-size: 13px;
+    font-weight: bold;
+}
+.first-name-error i{
+    margin-right: 6px;
+    font-size: 15px;
+    width: 20px;
+}
+.hide-last-name-error{
+    display: none;
+}
+.last-name-error{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 6px;
+    color: #d93025;
+    font-size: 13px;
+    font-weight: bold;
+}
+.last-name-error i{
+        margin-right: 6px;
+        font-size: 15px;
+        width: 20px;
+}
+.email-input-field{
+    position: relative;
+    height: 55px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.input-field-email {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    border: 1px solid #d1d1d1;
+}
+.hide-email-error{
+    display: none;  
+}
+.email-error{
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+    color: #d93025;
+    font-size: 13px;
+    font-weight: bold;
+}
+.email-error i{
+    margin-right: 6px;
+    font-size: 15px;
+    width: 20px;
+}
+.signup-input-field i {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #919191;
+    cursor: pointer;
+    padding: 3px;
+}
+
+
+
+.password-input-field{
+    position: relative;
+    height: 55px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.input-field-password {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    border: 1px solid #d1d1d1;
+}
+.hide-password-error{
+    display: none;    
+}
+.password-error{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 6px;
+    color: #d93025;
+    font-size: 13px;
+    font-weight: bold;
+}
+.hide-confirm-password-error{
+    display: none;
+}
+.confirm-password-error{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 6px;
+    color: #d93025;
+    font-size: 13px; 
+    font-weight: bold;
+}
+.confirm-password-error i{
+    margin-top: 2px;
+    margin-right: 6px;
+    font-size: 15px;
+    width: 20px;
+}
+.password-error i{
+    margin-top: 2px;
+    margin-right: 6px;
+    font-size: 15px;
+    width: 20px;
+}
+.password-input-field i {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #919191;
+    cursor: pointer;
+    padding: 3px;
+}
+.submit-input-field{
+    position: relative;
+    height: 55px;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 0 15px;
+    border: 1px solid #e94f37;
+    background-color: #e94f37;
+    margin: 25px 0 6px;
+}
+.input-submit{
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #e94f37;
+    cursor: pointer;
+    transition: all 0.3s ease ;
+}
+.submit-input:hover{
+    background-color: #e94f37;
+}
+.change-route{
+    margin-top: 10px;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+}
+.change-route a{
+    color: #fff;
+}
