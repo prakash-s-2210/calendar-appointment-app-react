@@ -22,22 +22,24 @@ export default function Signup() {
     const [ confirmPasswordVisiblity, setConfirmPasswordVisibility ] = useState('bx bx-hide show-hide');
     function checkFirstName(){
         const firstNamePattern = /^[A-Za-z\s]+$/;
-        if(firstNameValue.match(firstNamePattern))
+        if( firstNameValue.match(firstNamePattern))
         {
             return setErrorFirstName("hide-first-name-error")
         }
         else{
-            setErrorFirstName("first-name-error")
+            return setErrorFirstName("first-name-error");
         }
     }
     function checkLastName(){
         const lastNamePattern = /^[A-Za-z\s]+$/;
-        if(lastNameValue.match(lastNamePattern))
+        if( lastNameValue.match(lastNamePattern))
         {
+            console.log("2")
             return setErrorLastName("hide-last-name-error")
         }
         else{
-            setErrorLastName("last-name-error")
+            console.log("1")
+            return setErrorLastName("last-name-error");
         }
     }
     function checkEmail(){
@@ -46,14 +48,13 @@ export default function Signup() {
             return setErrorEmail("hide-email-error")
         }
         else{
-            setErrorEmail("email-error");
+            return setErrorEmail("email-error");
         }
     }
     function checkPassword(){
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        // const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
         
-        if(passwordValue.match(passwordPattern)){
+        if( passwordValue.match(passwordPattern)){
             return setErrorPassword("hide-password-error");
         }
         else{
@@ -77,6 +78,10 @@ export default function Signup() {
         checkPassword();
         checkConfirmPassword();
         if(
+            firstNameValue.length>0 &&
+            lastNameValue.length > 0 &&
+            emailValue.length > 0 && 
+            passwordValue.length > 0 &&
             errorFirstName === "hide-first-name-error" &&
             errorLastName === "hide-last-name-error" &&
             errorEmail === "hide-email-error" &&
@@ -98,9 +103,10 @@ export default function Signup() {
             if(response.status === 201){
                 navigate('/signin')
             }
-      }).catch((error)=>{
-        alert("The email id is already existed");
-      })
+            })
+            .catch((error)=>{
+                alert("The email id is already existed");
+            })
         }
     }
   return (
