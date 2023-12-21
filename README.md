@@ -5,4 +5,11 @@ Once the user is signed up, they can log in using their email and password. The 
 For subsequent requests such as posting, getting, updating, or deleting calendar events, the app first checks the token's validity. It decodes the token and verifies it against the user table. If the token is valid, the actual request is processed, and the response is returned to the frontend. If the token is null or invalid, the app redirects the user to the signup page.
 When the user clicks the logout button, the token's value is set to null, and the cookie is updated in the response header. The app then redirects the user to the signup page. If a request is made to the backend without a valid token, the app redirects the user to the landing page, as the user must be authenticated to access the app's features.
 
+## Screenshots
+
+https://github.com/prakash-s-2210/calendar-appointment-app-react/assets/94909544/c9a8a728-ddb8-48dc-a560-764e73cec738
+
+![Calendar Img](https://github.com/prakash-s-2210/calendar-appointment-app-react/assets/94909544/21c32b47-c5b7-48e3-b656-7990fdb2ded4)
+
+
  
